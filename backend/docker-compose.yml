@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  database-sql:
+    container_name: simple-chat-app.vm-database-sql
+    image: mysql:5
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=VXOFUXz89WD2Fu7iEvjkeAxNqwC2fToi
+      - MYSQL_DATABASE=simple_chat
+    ports:
+      - "3306:3306"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/srv/app/src
+    ports: 
+      - "3009:3009"
+    depends_on:
+      - database-sql
