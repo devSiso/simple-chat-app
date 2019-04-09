@@ -13,7 +13,7 @@ const DB = (function () {
     pool.getConnection(function (err, connection) {
       if (err) {
         callback(err);
-        return 
+        return
       }
 
       connection.query(query, params, function (err, rows) {
